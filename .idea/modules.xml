@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/jx-dao/jx-dao.iml" filepath="$PROJECT_DIR$/jx-dao/jx-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jx-domain/jx-domain.iml" filepath="$PROJECT_DIR$/jx-domain/jx-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jx-exception/jx-exception.iml" filepath="$PROJECT_DIR$/jx-exception/jx-exception.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jx-parent.iml" filepath="$PROJECT_DIR$/jx-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jx-service/jx-service.iml" filepath="$PROJECT_DIR$/jx-service/jx-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jx-util/jx-util.iml" filepath="$PROJECT_DIR$/jx-util/jx-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jx-web/jx-web.iml" filepath="$PROJECT_DIR$/jx-web/jx-web.iml" />
+    </modules>
+  </component>
+</project>
