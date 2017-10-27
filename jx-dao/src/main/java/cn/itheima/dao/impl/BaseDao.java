@@ -2,6 +2,7 @@ package cn.itheima.dao.impl;
 
 import cn.itheima.dao.IBaseDao;
 import cn.itheima.util.Page;
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -30,7 +31,13 @@ public class BaseDao implements IBaseDao{
 
 
     public <T> List<T> find(String hql, Class<T> entityClass, Object[] params) {
-        return null;
+        Query query = getSession().createQuery(hql);
+        if (params != null) {
+            for (int i = 0; i < params.length; i++) {
+                query.setParameter(i, params[i]);
+            }
+        }
+        return query.list();
     }
 
     public <T> T get(Class<T> entityClass, Serializable id) {
@@ -65,7 +72,7 @@ public class BaseDao implements IBaseDao{
     }
 
     public <T> void saveOrUpdate(T entity) {
-
+        getSession().save(entity);
     }
 
     public <T> void saveOrUpdateAll(Collection<T> entitys) {
@@ -73,7 +80,7 @@ public class BaseDao implements IBaseDao{
     }
 
     public <T> void deleteById(Class<T> entityClass, Serializable id) {
-
+        getSession().delete(get(entityClass,id));
     }
 
     public <T> void delete(Class<T> entityClass, Serializable[] ids) {

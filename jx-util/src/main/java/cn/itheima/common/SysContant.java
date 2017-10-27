@@ -7,6 +7,15 @@ package cn.itheima.common;
 public class SysContant {
 
 
-    public static final int PAGE_SIZE=4;
+    public static final int PAGE_SIZE=20;
+
+    /**
+     * 状态禁用
+     */
+    public static final int DISABLE = 0;
+    /**
+     * 状态可用
+     */
+    public static final int ENABLE  = 1;
 
 }

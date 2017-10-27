@@ -1,13 +1,26 @@
 package cn.itheima.service;
 
+import cn.itheima.domain.Dept;
 import cn.itheima.util.Page;
+import org.apache.poi.ss.formula.functions.T;
 
 import java.io.Serializable;
+import java.util.List;
 
 public interface IDeptService {
 
-    public <T> Page<T> findPage(String hql, Page<T> page, Class<T> entityClass, Object[] params);
+    Page<Dept> findPage(String hql, Page<Dept> page, Class<Dept> entityClass, Object[] params);
 
 
-    public <T> T get(Class<T> entityClass, Serializable id);
+    Dept get(Class<Dept> entityClass, Serializable id);
+
+    void saveOrUpdate(Dept entity);
+
+    List<Dept> find(String hql, Class<Dept> entityClass, Object[] params);
+
+    List<Dept> findSon(Dept dept,List<Dept> deptList);
+
+    void deleteById(Class<Dept> entityClass, Serializable id);
+
+    void delete(Class<Dept> entityClass, Serializable[] ids);
 }

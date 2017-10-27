@@ -7,6 +7,8 @@
           <element id="module-output" name="jx-web" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: junit:junit:4.12" />
+          <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.3" />
           <element id="archive" name="jx-domain-1.0-SNAPSHOT.jar">
             <element id="module-output" name="jx-domain" />
           </element>

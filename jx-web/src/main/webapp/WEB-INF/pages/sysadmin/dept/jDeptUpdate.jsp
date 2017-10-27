@@ -44,7 +44,13 @@
 	            <td class="columnTitle">部门名称：</td>
 	            <td class="tableContent"><input type="text" name="deptName" value="${deptName }"/>
 	            </td>
-	        </tr>		
+	        </tr>
+			<tr>
+				<td class="columnTitle">部门状态：</td>
+				<td class="tableContent"><s:radio name="state" list="#{'0':'禁用','1':'启用'}"></s:radio>
+					<%-- <s:radio name="state" list="{'0','1'}"></s:radio> --%>
+				</td>
+			</tr>
 		</table>
 	</div>
  </form>

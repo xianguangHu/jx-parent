@@ -12,8 +12,7 @@
 		    var count = 0;
 		    $(":checked").each(function() {
 		        count ++;
-			});
-
+			})
 			return count==1?true:false;
 		}
 
@@ -74,6 +73,7 @@
 		<td class="tableHeader">编号</td>
 		<td class="tableHeader">上级</td>
 		<td class="tableHeader">名称</td>
+		<td class="tableHeader">状态</td>
 	</tr>
 	</thead>
 	<tbody class="tableBody" >
@@ -86,6 +86,7 @@
 			<td>${dept.id }</td>
 			<td>${dept.parent.deptName }</td>
 			<td><a href="deptAction_toview?id=${dept.id }">${dept.deptName }</a></td>
+			<td>${dept.state == 0? "<font color= 'red'>禁用</font>": "<font color= 'green'>启用</font>" }</td>
 		</tr>
    </c:forEach>
 	</tbody>
