@@ -6,5 +6,6 @@ package cn.itheima.common;
  **/
 public class SysContant {
 
+    //
     public static final int PAGE_SIZE=4;
 }
