@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:component-scan base-package="cn.itheima"/>
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.30.69:1521:XE"/>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.30.49:1521:XE"/>
         <property name="user" value="user002"/>
         <property name="password" value="root"/>
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
 
     <tx:advice id="txAdvice">
         <tx:attributes>
@@ -31,7 +39,9 @@
     </tx:advice>
 
     <aop:config>
-        <aop:pointcut id="pointcut" expression="execution(* cn.itcast.jx.service.*.*(..))" />
+        <aop:pointcut id="pointcut" expression="execution(* cn.itheima.service.*.*(..))" />
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
     </aop:config>
+
+    <import resource="classpath:spring/applicationContext-dao.xml"/>
 </beans>

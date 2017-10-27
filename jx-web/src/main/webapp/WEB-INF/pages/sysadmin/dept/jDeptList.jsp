@@ -5,23 +5,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title></title>
-	<script type="text/javascript" src="${ctx }/js/jquery-1.4.4.js"></script>
+	<script type="text/javascript" src="${ctx }/js/jquery-3.2.1.min.js"></script>
 	<script>
-	     function isOnlyChecked(){
-	    	 var checkBoxArray = document.getElementsByName('id');
-				var count=0;
-				for(var index=0; index<checkBoxArray.length; index++) {
-					if (checkBoxArray[index].checked) {
-						count++;
-					}	
-				}
-			//jquery
-			//var count = $("[input name='id']:checked").size();
-			if(count==1)
-				return true;
-			else
-				return false;
-	     }
+
+		function isOnlyChecked() {
+		    var count = 0;
+		    $(":checked").each(function() {
+		        count ++;
+			});
+
+			return count==1?true:false;
+		}
+
 	     function toView(){
 	    	 if(isOnlyChecked()){
 	    		 formSubmit('deptAction_toview','_self');
@@ -85,7 +80,7 @@
     ${links }
 	
 	<c:forEach items="${results }" var="dept"  varStatus="st">
-		<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
+		<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" align="left">
 			<td><input type="checkbox" name="id" value="${dept.id }"/></td>
 			<td>${st.count }</td>
 			<td>${dept.id }</td>

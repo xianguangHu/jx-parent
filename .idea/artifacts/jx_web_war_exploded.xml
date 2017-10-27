@@ -7,6 +7,18 @@
           <element id="module-output" name="jx-web" />
         </element>
         <element id="directory" name="lib">
+          <element id="archive" name="jx-domain-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="jx-domain" />
+          </element>
+          <element id="archive" name="jx-service-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="jx-service" />
+          </element>
+          <element id="archive" name="jx-dao-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="jx-dao" />
+          </element>
+          <element id="archive" name="jx-util-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="jx-util" />
+          </element>
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.4" />
           <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />

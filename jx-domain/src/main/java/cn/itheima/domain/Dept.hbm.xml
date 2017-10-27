@@ -1,0 +1,15 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="cn.itheima.domain.Dept" table="DEPT_P" schema="user002">
+        <id name="id" column="DEPT_ID">
+            <generator class="uuid"/>
+        </id>
+        <property name="deptName" column="DEPT_NAME"/>
+        <!-- 自身为子类  一个部门可以有多个子部门-->
+        <many-to-one name="parent" class="cn.itheima.domain.Dept" column="PARENT_ID"/>
+        <property name="state" column="STATE"/>
+    </class>
+</hibernate-mapping>

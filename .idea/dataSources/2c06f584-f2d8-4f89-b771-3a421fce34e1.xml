@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@192.168.30.49">
+  <database-model serializer="dbm" rdbms="ORACLE" format-version="4.3">
+    <root id="1"/>
+    <schema id="2" parent="1" name="USER002">
+      <ObjectId>39</ObjectId>
+      <IntrospectionTimestamp>2017-10-27.09:46:17</IntrospectionTimestamp>
+      <CreatedTimestamp>2017-10-26.20:13:06</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-26.20:13:07</ModifiedTimestamp>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="PUBLIC">
+      <ObjectId>1</ObjectId>
+    </schema>
+    <schema id="4" parent="1" name="SYS">
+      <ObjectId>0</ObjectId>
+    </schema>
+    <schema id="5" parent="1" name="SYSTEM">
+      <ObjectId>5</ObjectId>
+    </schema>
+    <schema id="6" parent="1" name="OUTLN">
+      <ObjectId>11</ObjectId>
+    </schema>
+    <schema id="7" parent="1" name="DIP">
+      <ObjectId>18</ObjectId>
+    </schema>
+    <schema id="8" parent="1" name="TSMSYS">
+      <ObjectId>20</ObjectId>
+    </schema>
+    <schema id="9" parent="1" name="DBSNMP">
+      <ObjectId>23</ObjectId>
+    </schema>
+    <schema id="10" parent="1" name="CTXSYS">
+      <ObjectId>25</ObjectId>
+    </schema>
+    <schema id="11" parent="1" name="XDB">
+      <ObjectId>27</ObjectId>
+    </schema>
+    <schema id="12" parent="1" name="ANONYMOUS">
+      <ObjectId>28</ObjectId>
+    </schema>
+    <schema id="13" parent="1" name="MDSYS">
+      <ObjectId>32</ObjectId>
+    </schema>
+    <schema id="14" parent="1" name="HR">
+      <ObjectId>33</ObjectId>
+    </schema>
+    <schema id="15" parent="1" name="FLOWS_FILES">
+      <ObjectId>34</ObjectId>
+    </schema>
+    <schema id="16" parent="1" name="FLOWS_020100">
+      <ObjectId>35</ObjectId>
+    </schema>
+    <schema id="17" parent="1" name="WATERUSER">
+      <ObjectId>36</ObjectId>
+    </schema>
+    <schema id="18" parent="1" name="WATERUSER2">
+      <ObjectId>37</ObjectId>
+    </schema>
+    <schema id="19" parent="1" name="USER001">
+      <ObjectId>38</ObjectId>
+    </schema>
+    <table id="20" parent="2" name="DEPT_P">
+      <ObjectId>13820</ObjectId>
+      <CreatedTimestamp>2017-10-26.20:13:06</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-26.20:13:06</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <column id="21" parent="20" name="DEPT_ID">
+      <Position>1</Position>
+      <DataType>VARCHAR2(40)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="22" parent="20" name="DEPT_NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(40)|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <column id="23" parent="20" name="PARENT_ID">
+      <Position>3</Position>
+      <DataType>VARCHAR2(40)|0</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <column id="24" parent="20" name="STATE">
+      <Position>4</Position>
+      <DataType>NUMBER(11)|0</DataType>
+      <DefaultExpression>NULL
+</DefaultExpression>
+    </column>
+    <index id="25" parent="20" name="SYS_C004020">
+      <ObjectId>13821</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2017-10-26.20:13:07</CreatedTimestamp>
+      <ModifiedTimestamp>2017-10-26.20:13:07</ModifiedTimestamp>
+      <TablespaceName>USER002</TablespaceName>
+      <ColNames>DEPT_ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="26" parent="20" name="SYS_C004020">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2017-10-26.20:13:07</ModifiedTimestamp>
+      <ColNames>DEPT_ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C004020</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

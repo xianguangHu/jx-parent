@@ -7,9 +7,28 @@
         <groupId>cn.itheima</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <packaging>jar</packaging>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>jx-domain</artifactId>
-
-
+    <build>
+        <!-- main/java中的*.hbm.xml文件不加载到classes目录下
+             所以运行会报not fount错误
+             在maven中配置将文件加载到classes下-->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
 </project>

@@ -24,6 +24,13 @@ String.prototype.replaceAll  = function(s1,s2){
 	return this.replace(new RegExp(s1,"gm"),s2);    
 } 
 
+function turnPage(pageNo,url) {
+	document.getElementById("pageNo").value=pageNo;
+	document.forms[0].target = "_self";
+	document.forms[0].action =url;
+	document.forms[0].submit();
+	return true;
+}
 
 /* create by tony 20100121 option:实现yyyy-mm-dd或yyyy-m-d数据转换为中文字符串yyyy年mm月dd日*/ 
 function getCNDateStr( datestr ){
