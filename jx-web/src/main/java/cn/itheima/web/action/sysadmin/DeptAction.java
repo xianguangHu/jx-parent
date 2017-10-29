@@ -8,7 +8,6 @@ import cn.itheima.web.action.BaseAction;
 
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.commons.lang.StringUtils;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;

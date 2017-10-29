@@ -12,7 +12,9 @@
 		
 		<!-- 配置hbm.xml映射文件 -->
 		<mapping resource="cn/itheima/domain/Dept.hbm.xml"/>
-		
+		<mapping resource="cn/itheima/domain/User.hbm.xml"/>
+		<mapping resource="cn/itheima/domain/UserInfo.hbm.xml"/>
+
 		
 		
 	</session-factory>

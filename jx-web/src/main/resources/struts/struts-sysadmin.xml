@@ -14,5 +14,9 @@
             <result name="success" type="redirectAction">deptAction_list</result>
             <result name="toupdate">/WEB-INF/pages/sysadmin/dept/jDeptUpdate.jsp</result>
         </action>
+
+        <action name="userAction_*" class="cn.itheima.web.action.sysadmin.UserAction" method="{1}">
+            <result name="list">/WEB-INF/pages/sysadmin/user/jUserList.jsp</result>
+        </action>
     </package>
 </struts>
