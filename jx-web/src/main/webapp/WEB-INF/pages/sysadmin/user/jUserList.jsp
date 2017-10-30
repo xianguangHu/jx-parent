@@ -84,11 +84,11 @@
 ${links}
 	
 	<c:forEach items="${results}" var="o" varStatus="status">
-	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
+	<tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" align="left">
 		<td><input type="checkbox" name="id" value="${o.id}"/></td>
 		<td>${status.index+1}</td>
 		<td><a href="userAction_toview?id=${o.id}">${o.userName}</a></td>
-		<td>${o.state }</td>
+		<td>${o.state == 0 ?"<font color='red'>禁用</font>":"<font color='green'>启用</font>"}</td>
 	</tr>
 	</c:forEach>
 	

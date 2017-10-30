@@ -1,6 +1,6 @@
 package cn.itheima.domain.base;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * @author huxianguang
@@ -10,9 +10,9 @@ import java.util.Date;
 public class BaseEntity {
     private String createBy;//创建者id
     private String createTime;//创建者所在的部门id
-    private Date createDept;//创建时间
+    private Timestamp createDept;//创建时间
     private String updateBy;//更新者的id
-    private Date updateTime;//更新时间
+    private Timestamp updateTime;//更新时间
 
     public String getCreateBy() {
         return createBy;
@@ -30,11 +30,11 @@ public class BaseEntity {
         this.createTime = createTime;
     }
 
-    public Date getCreateDept() {
+    public Timestamp getCreateDept() {
         return createDept;
     }
 
-    public void setCreateDept(Date createDept) {
+    public void setCreateDept(Timestamp createDept) {
         this.createDept = createDept;
     }
 
@@ -46,11 +46,11 @@ public class BaseEntity {
         this.updateBy = updateBy;
     }
 
-    public Date getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 }

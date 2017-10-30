@@ -5,7 +5,7 @@
 <hibernate-mapping package="cn.itheima.domain">
     <class name="User" table="USER_P" schema="user002">
         <id name="id" column="USER_ID">
-            <generator class="uuid"/>
+            <generator class="assigned"/>
         </id>
         <property name="userName" column="USER_NAME"/>
         <property name="password" column="PASSWORD"/>
@@ -21,5 +21,10 @@
 
         <!-- 用户与用户扩展信息是一对一关系-->
         <one-to-one name="userInfo" class="UserInfo" cascade="all"/>
+
+        <set name="roles">
+            <key column="USER_ID"/>
+            <many-to-many class="Role" column="ROLE_ID"/>
+        </set>
     </class>
 </hibernate-mapping>

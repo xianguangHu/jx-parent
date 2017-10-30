@@ -1,0 +1,30 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.itheima.domain">
+    <class name="Role" table="ROLE_P" schema="user002">
+       <id name="id" column="ROLE_ID">
+           <generator class="uuid"/>
+       </id>
+        <property name="name" column="NAME"/>
+        <property name="remark" column="REMARK"/>
+        <property name="orderNo" column="ORDER_NO"/>
+
+        <property name="createBy" column="CREATE_BY"/>
+        <property name="createDept" column="CREATE_DEPT"/>
+        <property name="createTime" column="CREATE_TIME"/>
+        <property name="updateBy" column="UPDATE_BY"/>
+        <property name="updateTime" column="UPDATE_TIME"/>
+
+        <set name="users">
+            <key column="ROLE_ID"/>
+            <many-to-many column="USER_ID" class="User"/>
+        </set>
+
+        <set name="modules">
+            <key column="ROLE_ID"/>
+            <many-to-many column="MODULE_ID" class="Module"/>
+        </set>
+    </class>
+</hibernate-mapping>

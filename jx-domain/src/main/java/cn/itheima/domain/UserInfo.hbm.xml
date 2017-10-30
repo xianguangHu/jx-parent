@@ -5,7 +5,7 @@
 <hibernate-mapping package="cn.itheima.domain">
     <class name="UserInfo" table="USER_INFO_P" schema="user002">
         <id name="id" column="USER_INFO_ID">
-            <generator class="uuid"/>
+            <generator class="assigned"/>
         </id>
         <property name="name" column="NAME"/>
         <property name="joinDate" column="JOIN_DATE"/>

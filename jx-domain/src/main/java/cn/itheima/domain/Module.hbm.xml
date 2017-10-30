@@ -1,0 +1,40 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.itheima.domain">
+    <class name="Module" table="MODULE_P" schema="user002">
+        <id name="id" column="MODULE_ID">
+            <generator class="uuid"/>
+        </id>
+
+        <property name="parentName" column="PARENT_NAME"/>
+        <property name="name" column="NAME"/>
+        <property name="layerNum" column="LAYER_NUM"/>
+        <property name="isLeaf" column="IS_LEAF"/>
+        <property name="ico" column="ICO"/>
+        <property name="cpermission" column="CPERMISSION"/>
+        <property name="curl" column="CURL"/>
+        <property name="ctype" column="CTYPE"/>
+        <property name="state" column="STATE"/>
+        <property name="belong" column="BELONG"/>
+        <property name="cwhich" column="CWHICH"/>
+        <property name="quoteNum" column="QUOTE_NUM"/>
+        <property name="remark" column="REMARK"/>
+        <property name="orderNo" column="ORDER_NO"/>
+
+        <property name="createBy" column="CREATE_BY"/>
+        <property name="createDept" column="CREATE_DEPT"/>
+        <property name="createTime" column="CREATE_TIME"/>
+        <property name="updateBy" column="UPDATE_BY"/>
+        <property name="updateTime" column="UPDATE_TIME"/>
+
+        <!-- 一个子模块对应一个父模块，一个父模块对应多个子模块-->
+        <many-to-one name="parent" column="PARENT_ID" class="Module"/>
+
+        <set name="roles">
+            <key column="MODULE_ID"/>
+            <many-to-many column="ROLE_ID" class="Role"/>
+        </set>
+    </class>
+</hibernate-mapping>

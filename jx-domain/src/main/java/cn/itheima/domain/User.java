@@ -2,6 +2,9 @@ package cn.itheima.domain;
 
 import cn.itheima.domain.base.BaseEntity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 用户
  * @author huxianguang
@@ -13,6 +16,16 @@ public class User extends BaseEntity {
     private String userName;
     private String password;
     private Integer state;
+
+    private Set<Role> roles = new HashSet<Role>();
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     private UserInfo userInfo;
 

@@ -9,6 +9,8 @@ import cn.itheima.web.action.BaseAction;
 import com.opensymphony.xwork2.ModelDriven;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,8 @@ import java.util.List;
  * @author huxianguang
  * @create 2017-10-26-下午8:37
  **/
+@Controller
+@Scope("prototype")
 public class DeptAction extends BaseAction implements ModelDriven<Dept> {
 
     private Dept dept = new Dept();

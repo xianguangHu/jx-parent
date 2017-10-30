@@ -96,8 +96,8 @@
 	            <td class="tableContent"><input type="text" name="userInfo.telephone" value=""/></td>
 	        </tr>	
         	<tr>
-        	    <td class="columnTitle">邮箱：</td>
-	            <td class="tableContent"><input type="text" name="userInfo.email" value=""/></td>
+        	    <%--<td class="columnTitle">邮箱：</td>--%>
+	            <%--<td class="tableContent"><input type="text" name="userInfo.email" value=""/></td>--%>
 	            <td class="columnTitle">出生年月：</td>
 	            <td class="tableContent">
 					<input type="text" style="width:90px;" name="userInfo.birthday"

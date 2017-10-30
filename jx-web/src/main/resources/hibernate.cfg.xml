@@ -14,9 +14,9 @@
 		<mapping resource="cn/itheima/domain/Dept.hbm.xml"/>
 		<mapping resource="cn/itheima/domain/User.hbm.xml"/>
 		<mapping resource="cn/itheima/domain/UserInfo.hbm.xml"/>
+		<mapping resource="cn/itheima/domain/Role.hbm.xml"/>
+		<mapping resource="cn/itheima/domain/Module.hbm.xml"/>
 
-		
-		
 	</session-factory>
 </hibernate-configuration>
 

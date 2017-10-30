@@ -11,12 +11,12 @@ import java.util.Map;
  * @author huxianguang
  * @create 2017-10-26-下午8:29
  **/
-public class Page<T> {
+public class Page<User> {
     private int pageNo = 1;  //页码 默认是第一页
     private int pageSize = SysContant.PAGE_SIZE; //每页显示的记录数
     private int totalRecord;  //总记录数
     private int totalPage;   //总页数
-    private List<T> results;  //对应的当前记录
+    private List<User> results;  //对应的当前记录
     private Map<String,Object> params = new HashMap<String, Object>();
 
     public int getPageNo() {
@@ -54,11 +54,11 @@ public class Page<T> {
         this.totalPage = totalPage;
     }
 
-    public List<T> getResults() {
+    public List<User> getResults() {
         return results;
     }
 
-    public void setResults(List<T> results) {
+    public void setResults(List<User> results) {
         this.results = results;
     }
 
