@@ -63,4 +63,18 @@ public class UserService implements IUserService {
     public void delete(Class<User> entityClass, Serializable[] ids) {
 
     }
+
+    /**
+     * 根据username来查找User
+     * @param username
+     * @return
+     */
+    public User findUserByUsername(String username) {
+        String hql = "from User where userName = ?";
+        List<User> users = baseDao.find(hql, User.class, new Object[]{username});
+        if (users.size() > 0) {
+            return users.get(0);
+        }
+        return null;
+    }
 }

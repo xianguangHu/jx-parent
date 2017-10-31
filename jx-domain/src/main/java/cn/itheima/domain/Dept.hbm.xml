@@ -13,7 +13,7 @@
         <property name="state" column="STATE"/>
 
         <!-- 部门对用户为一对多-->
-        <set name="users">
+        <set name="users" >
             <key column="DEPT_ID"/>
             <one-to-many class="User"/>
         </set>

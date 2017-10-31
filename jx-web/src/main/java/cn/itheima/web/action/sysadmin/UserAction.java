@@ -110,4 +110,10 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
         return SUCCESS;
     }
 
+    public String ajaxUser() {
+        String hql = "from User where dept.id = ?";
+        List<User> users = userService.find(hql, User.class, new Object[]{model.getDept().getId()});
+        push(users);
+        return "json";
+    }
 }

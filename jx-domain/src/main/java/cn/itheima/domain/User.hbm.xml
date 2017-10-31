@@ -22,9 +22,10 @@
         <!-- 用户与用户扩展信息是一对一关系-->
         <one-to-one name="userInfo" class="UserInfo" cascade="all"/>
 
-        <set name="roles">
+        <set name="roles" table="ROLE_USER_P" schema="USER002">
             <key column="USER_ID"/>
             <many-to-many class="Role" column="ROLE_ID"/>
         </set>
+
     </class>
 </hibernate-mapping>

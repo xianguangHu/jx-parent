@@ -7,6 +7,9 @@ package cn.itheima.common;
 public class SysContant {
 
 
+    /**
+     * 每页显示多少天数据
+     */
     public static final int PAGE_SIZE=20;
 
     /**
@@ -17,5 +20,7 @@ public class SysContant {
      * 状态可用
      */
     public static final int ENABLE  = 1;
+
+    public static final String CURRENT_USER = "current_user";
 
 }

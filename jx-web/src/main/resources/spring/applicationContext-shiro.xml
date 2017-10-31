@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- 配置shiro安全管理器-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="authRealm"/>
+        <!--缓存-->
+        <property name="cacheManager" ref="shiroEhcacheManager"/>
+    </bean>
+
+    <!--自定义权限认证-->
+    <bean id="authRealm" class="cn.itheima.shiro.AuthRealm">
+        <!--自定义密码加密算法-->
+        <property name="credentialsMatcher" ref="passwordMatcher"/>
+    </bean>
+
+    <!-- 设置密码及时策略 md5hash-->
+    <bean id="passwordMatcher" class="cn.itheima.shiro.CustomCredentialsMatcher"/>
+
+    <!--filter-name 这个名字的值来自于web.xml中filter的名字-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!--注入安全管理器-->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 登陆页面-->
+        <property name="loginUrl" value="/index.jsp"/>
+        <!--登陆成功后-->
+        <property name="successUrl" value="/home.action"/>
+        <property name="filterChainDefinitions">
+            <value>
+                /index.jsp* = anon
+                /home* = anon
+                /sysadmin/login/login.jsp* = anon
+                /sysadmin/login/logout.jsp* = anon
+                /login* = anon
+                /logout* = anon
+                /components/** = anon
+                /css/** = anon
+                /images/** = anon
+                /js/** = anon
+                /make/** = anon
+                /skin/** = anon
+                /stat/** = anon
+                /ufiles/** = anon
+                /validator/** = anon
+                /resource/** = anon
+                /** = authc
+                /*.* = authc
+            </value>
+        </property>
+    </bean>
+
+    <!--用户授权/认证信息Cache,采用EhCache缓存-->
+    <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:ehcache-shiro.xml"/>
+    </bean>
+
+    <!-- 开启权限控制的注解功能 -->
+    <!-- 后处理器：通过动态代理在某bean实例化的前增强。 -->
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!-- 生成代理，通过代理进行控制 :切面自动代理：相当于以前的AOP标签配置-->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor">
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
+
+    <!-- 注入安全管理器:Advisor切面配置：授权属性的切面 -->
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+</beans>

@@ -29,4 +29,6 @@ public interface IUserService {
 
     //批量删除
     void delete(Class<User> entityClass, Serializable[] ids);
+
+    User findUserByUsername(String username);
 }

@@ -1,30 +1,48 @@
-<!DOCTYPE hibernate-mapping PUBLIC
-        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="cn.itheima.domain">
-    <class name="Role" table="ROLE_P" schema="user002">
-       <id name="id" column="ROLE_ID">
-           <generator class="uuid"/>
-       </id>
-        <property name="name" column="NAME"/>
-        <property name="remark" column="REMARK"/>
-        <property name="orderNo" column="ORDER_NO"/>
-
-        <property name="createBy" column="CREATE_BY"/>
-        <property name="createDept" column="CREATE_DEPT"/>
-        <property name="createTime" column="CREATE_TIME"/>
-        <property name="updateBy" column="UPDATE_BY"/>
-        <property name="updateTime" column="UPDATE_TIME"/>
-
-        <set name="users">
-            <key column="ROLE_ID"/>
-            <many-to-many column="USER_ID" class="User"/>
-        </set>
-
-        <set name="modules">
-            <key column="ROLE_ID"/>
-            <many-to-many column="MODULE_ID" class="Module"/>
-        </set>
-    </class>
+	
+	<class name="Role" table="ROLE_P" schema="user002">
+		<!-- 配置主键id -->
+		<id name="id" column="ROLE_ID">
+			<generator class="uuid"></generator>
+		</id>
+		
+		<property name="name" column="NAME"></property>
+		<property name="remark" column="REMARK"></property>
+		<property name="orderNo" column="ORDER_NO"></property>
+			
+		<property name="createBy" column="CREATE_BY"></property>
+		<property name="createDept" column="CREATE_DEPT"></property>
+		<property name="createTime" column="CREATE_TIME"></property>
+		<property name="updateBy" column="UPDATE_BY"></property>
+		<property name="updateTime" column="UPDATE_TIME"></property>
+		
+		<!-- 配置角色与用户的关系 :多对多
+		   在hibernate中，多对多的关系，自动维护中间表，无需设置级联，
+		   如果设置了级联，可能会清空关联表的数据
+		-->
+		<set name="users" table="ROLE_USER_P"  schema="user002">
+			<!-- 外键：先配置当前Role类的外键 -->
+			<key column="ROLE_ID"></key>
+			<!--
+			     class:指集合中对象的类型
+			     column:外键, 配置当前user的外键
+			 -->
+			<many-to-many class="User" column="USER_ID" ></many-to-many>
+		</set>
+		
+		<!-- 角色和模块：多对多 -->
+		<set name="modules" table="ROLE_MODULE_P" schema="user002">
+			<key column="ROLE_ID"></key>
+			<many-to-many class="Module" column="MODULE_ID"></many-to-many>
+		</set>
+		
+		
+	</class>
+	
 </hibernate-mapping>
+    
+    

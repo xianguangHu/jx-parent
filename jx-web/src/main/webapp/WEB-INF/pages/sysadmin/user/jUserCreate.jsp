@@ -5,7 +5,26 @@
 	<title></title>
 	<script type="text/javascript" src="${ctx }/js/datepicker/WdatePicker.js"></script>
 </head>
+<script type="text/javascript" src="${ctx}/js/jquery-3.2.1.min.js"></script>
+<script>
 
+    function ajaxUser() {
+        var val = $("#deptSelect").val();
+
+        $.ajax({
+            type:"post",
+            url:"${ctx}/sysadmin/userAction_ajaxUser",
+            data:{"dept.id":val},
+            success:function(data){
+                $.each(data,function(idx,user){
+                    $("#userSelect").append("<option value='"+user.id+"'>"+user.userName+"</option>");
+				})
+            },
+            dataType:"json"
+        })
+}
+
+</script>
 <body>
 <form name="icform" method="post">
 
@@ -38,9 +57,9 @@
        		<tr>
 	            <td class="columnTitle">所在部门：</td>
 	            <td class="tableContent">
-	            	<s:select name="dept.id" list="deptList"
+	            	<s:select name="dept.id" list="deptList" id="deptSelect"
 	            		listKey="id" listValue="deptName"
-	            		headerKey="" headerValue="--请选择--"
+	            		headerKey="" headerValue="--请选择--" onchange="ajaxUser();"
 	            	></s:select>
 	            </td>
 	        </tr>
@@ -58,10 +77,13 @@
 	            <td class="tableContent"><input type="text" name="userInfo.name" value=""/></td>
 	            <td class="columnTitle">直属领导：</td>
 	            <td class="tableContent">
-	            	<s:select name="userInfo.manager.id" list="userList"
-	            		listKey="id" listValue="userInfo.name"
-	            		headerKey="" headerValue="--请选择--"
-	            	></s:select>
+	            	<%--<s:select name="userInfo.manager.id" list="userList" id="userSelect"--%>
+	            		<%--listKey="id" listValue="userInfo.name"--%>
+	            		<%--headerKey="" headerValue="--请选择--"--%>
+	            	<%--></s:select>--%>
+					<select id="userSelect" name="userInfo.name">
+
+					</select>
 	            </td>
 	        </tr>		
 	        <tr>

@@ -6,7 +6,7 @@
 
 <struts>
     
-    <package name="sysadmin" namespace="/sysadmin" extends="struts-default">
+    <package name="sysadmin" namespace="/sysadmin" extends="json-default">
         <action name="deptAction_*" class="cn.itheima.web.action.sysadmin.DeptAction" method="{1}">
             <result name="list">/WEB-INF/pages/sysadmin/dept/jDeptList.jsp</result>
             <result name="toview">/WEB-INF/pages/sysadmin/dept/jDeptView.jsp</result>
@@ -21,6 +21,7 @@
             <result name="tocreate">/WEB-INF/pages/sysadmin/user/jUserCreate.jsp</result>
             <result name="success" type="redirectAction">userAction_list</result>
             <result name="toupdate">/WEB-INF/pages/sysadmin/user/jUserUpdate.jsp</result>
+            <result name="json" type="json"/>
         </action>
 
         <action name="roleAction_*" class="cn.itheima.web.action.sysadmin.RoleAction" method="{1}">

@@ -44,4 +44,5 @@
     </aop:config>
 
     <import resource="classpath:spring/applicationContext-dao.xml"/>
+    <import resource="classpath:spring/applicationContext-shiro.xml"/>
 </beans>
