@@ -17,10 +17,11 @@
             data:{"dept.id":val},
             success:function(data){
                 $.each(data,function(idx,user){
+                    alert("kkkk");
                     $("#userSelect").append("<option value='"+user.id+"'>"+user.userName+"</option>");
 				})
             },
-            dataType:"json"
+            dataType:""
         })
 }
 
