@@ -1,8 +1,10 @@
 package cn.itheima.web.action.sysadmin;
 
 import cn.itheima.domain.Dept;
+import cn.itheima.domain.Role;
 import cn.itheima.domain.User;
 import cn.itheima.service.IDeptService;
+import cn.itheima.service.IRoleService;
 import cn.itheima.service.IUserService;
 import cn.itheima.util.Page;
 import cn.itheima.web.action.BaseAction;
@@ -11,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author huxianguang
@@ -32,6 +36,9 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
 
     @Autowired
     private IDeptService deptService;
+
+    @Autowired
+    private IRoleService roleService;
 
 
     private Page page = new Page();
@@ -115,5 +122,36 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
         List<User> users = userService.find(hql, User.class, new Object[]{model.getDept().getId()});
         push(users);
         return "json";
+    }
+
+    public String torole() {
+        User user = userService.get(User.class, model.getId());
+        String hql = "from Role";
+        List<Role> roles = roleService.find(hql, Role.class, null);
+        push(user);
+        put("roleList",roles);
+        put("roles",user.getRoles());
+        return "torole";
+    }
+
+    private String[] roleIds;
+
+    public void setRoleIds(String[] roleIds) {
+        this.roleIds = roleIds;
+    }
+
+    public String role() {
+        User user = userService.get(User.class, model.getId());
+        Set<Role> roles = new HashSet<Role>();
+        if (roleIds != null && roles.size() >0) {
+            for (String roleId : roleIds) {
+                Role role = roleService.get(Role.class, roleId);
+                roles.add(role);
+            }
+        }
+        user.setRoles(roles);
+        //多对多关系 自定维护中间表 但是要求双方都是持久化状态
+        userService.saveOrUpdate(user);
+        return SUCCESS;
     }
 }

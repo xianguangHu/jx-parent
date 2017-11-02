@@ -41,15 +41,14 @@
 
 <div style="text-align:left">
 	<c:forEach items="${roleList}" var="o">
-		<span style="padding:3px;">
-		<input type="checkbox" name="roleIds" value="${o.id}" class="input"
-			<c:if test="${fn:contains(userRoleStr,o.name)}">checked</c:if>
-		>
-		${o.name}
-		</span>
-		
+		<c:set var="flag" value="false"></c:set>
+		<c:forEach items="${roles}" var="role">
+			<c:if test="${o.id == role.id}">
+				<c:set var="flag" value="true"/>
+			</c:if>
+		</c:forEach>
+		<input type="checkbox" name="roleIds" value="${o.id }" ${flag?"checked":"" }>${o.name }
 	</c:forEach>
-	
 </div>
  
 </div>

@@ -23,7 +23,7 @@ public class ModuleService implements IModuleService {
     private IBaseDao baseDao;
 
     public List<Module> find(String hql, Class<Module> entityClass, Object[] params) {
-        return null;
+        return baseDao.find(hql,entityClass,params);
     }
 
     public Module get(Class<Module> entityClass, Serializable id) {

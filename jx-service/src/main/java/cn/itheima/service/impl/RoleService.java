@@ -23,7 +23,7 @@ public class RoleService implements IRoleService {
     private IBaseDao baseDao;
 
     public List<Role> find(String hql, Class<Role> entityClass, Object[] params) {
-        return null;
+        return baseDao.find(hql,entityClass,params);
     }
 
     public Role get(Class<Role> entityClass, Serializable id) {
