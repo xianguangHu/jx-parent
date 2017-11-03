@@ -8,11 +8,15 @@ import cn.itheima.service.IRoleService;
 import cn.itheima.service.IUserService;
 import cn.itheima.util.Page;
 import cn.itheima.web.action.BaseAction;
+import com.alibaba.fastjson.JSON;
 import com.opensymphony.xwork2.ModelDriven;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -117,11 +121,18 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
         return SUCCESS;
     }
 
-    public String ajaxUser() {
+    public String ajaxUser() throws IOException {
         String hql = "from User where dept.id = ?";
         List<User> users = userService.find(hql, User.class, new Object[]{model.getDept().getId()});
-        push(users);
-        return "json";
+        String jsonString = JSON.toJSONString(users);
+
+        //传送到前台
+        HttpServletResponse response = ServletActionContext.getResponse();
+        //设置参数信息
+        response.setCharacterEncoding("utf-8");
+        //写出去
+        response.getWriter().write(jsonString);
+        return NONE;
     }
 
     public String torole() {
@@ -140,10 +151,14 @@ public class UserAction extends BaseAction implements ModelDriven<User> {
         this.roleIds = roleIds;
     }
 
+//    public String[] getRoleIds() {
+//        return roleIds;
+//    }
+
     public String role() {
         User user = userService.get(User.class, model.getId());
         Set<Role> roles = new HashSet<Role>();
-        if (roleIds != null && roles.size() >0) {
+        if (roleIds != null && roleIds.length >0) {
             for (String roleId : roleIds) {
                 Role role = roleService.get(Role.class, roleId);
                 roles.add(role);

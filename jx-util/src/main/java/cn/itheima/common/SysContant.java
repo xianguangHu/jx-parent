@@ -21,6 +21,6 @@ public class SysContant {
      */
     public static final int ENABLE  = 1;
 
-    public static final String CURRENT_USER = "current_user";
+    public static final String CURRENT_USER = "CURRENT_USER";
 
 }

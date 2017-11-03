@@ -1,6 +1,7 @@
 package cn.itheima.domain;
 
 import cn.itheima.domain.base.BaseEntity;
+import com.alibaba.fastjson.annotation.JSONField;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,11 +13,14 @@ import java.util.Set;
  **/
 public class User extends BaseEntity {
     private String id;
+
+    @JSONField(serialize=false)
     private Dept dept;
     private String userName;
     private String password;
     private Integer state;
 
+    @JSONField(serialize=false)
     private Set<Role> roles = new HashSet<Role>();
 
     public Set<Role> getRoles() {

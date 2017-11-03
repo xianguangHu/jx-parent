@@ -16,12 +16,14 @@
             url:"${ctx}/sysadmin/userAction_ajaxUser",
             data:{"dept.id":val},
             success:function(data){
+                //jquery获取到的是数组
+                $("#userSelect")[0].length = 0;
+
                 $.each(data,function(idx,user){
-                    alert("kkkk");
                     $("#userSelect").append("<option value='"+user.id+"'>"+user.userName+"</option>");
 				})
             },
-            dataType:""
+            dataType:"json"
         })
 }
 

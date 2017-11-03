@@ -31,6 +31,7 @@ public class HomeAction extends BaseAction{
 	public String tomain(){
 		return "tomain";
 	}
+
 	public String toleft(){
 		
 		ValueStack valueStack = ActionContext.getContext().getValueStack();

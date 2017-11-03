@@ -30,20 +30,28 @@ public class LoginAction extends BaseAction {
     }
 
     public String login() {
+
+        //获取Subeject
+        Subject subject = SecurityUtils.getSubject();
+        if (subject.isAuthenticated()) {
+            return SUCCESS;
+        }
+
         if (StringUtils.isBlank(username)) {
             return "login";
         }
 
-        UsernamePasswordToken token = new UsernamePasswordToken(username,password);
-        //获取Subeject
-        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         //启用安全管理器
         subject.login(token);
         //登陆成功
         User user = (User) subject.getPrincipal();
-        session.put(SysContant.CURRENT_USER,user);
+        session.put(SysContant.CURRENT_USER, user);
         return SUCCESS;
     }
 
-
+        public String logout() {
+            SecurityUtils.getSubject().logout();
+            return "logout";
+        }
 }

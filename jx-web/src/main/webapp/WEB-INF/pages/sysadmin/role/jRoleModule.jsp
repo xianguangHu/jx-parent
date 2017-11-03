@@ -36,19 +36,6 @@
     //$(document).ready(function(){});
     //$().ready(function(){});
     //$(function(){});
-    $().ready(function(){
-        $.ajax({
-            url:'roleAction_roleModuleJsonStr.action?id=${id}',
-            type:'get',
-            dataType:'text',
-            success:initZtree
-        });
-    });
-
-    function initZtree(data){
-        var zNodes = eval("("+data+")");
-        zTreeObj = $.fn.zTree.init($("#jxTree"), setting, zNodes);
-    }
 
     //页面加载完执行
     $(function(){
@@ -56,7 +43,7 @@
             url:'${ctx}/sysadmin/roleAction_ajaxModule.action?id=${id}',
             type:'get',
             success:initZtree,
-            dataType:"test"
+            dataType:"text"
 
         });
 
