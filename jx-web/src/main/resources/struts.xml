@@ -29,5 +29,6 @@
     </package>
 
     <include file="struts/struts-sysadmin.xml"/>
+    <include file="struts/struts-cargo.xml"/>
 
 </struts>

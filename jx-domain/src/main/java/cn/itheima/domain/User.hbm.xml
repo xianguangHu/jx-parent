@@ -1,31 +1,40 @@
-<!DOCTYPE hibernate-mapping PUBLIC
-        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="cn.itheima.domain">
-    <class name="User" table="USER_P" schema="user002">
-        <id name="id" column="USER_ID">
-            <generator class="assigned"/>
-        </id>
-        <property name="userName" column="USER_NAME"/>
-        <property name="password" column="PASSWORD"/>
-        <property name="state" column="STATE"/>
-        <property name="createBy" column="CREATE_BY"/>
-        <property name="createDept" column="CREATE_DEPT"/>
-        <property name="createTime" column="CREATE_TIME"/>
-        <property name="updateBy" column="UPDATE_BY"/>
-        <property name="updateTime" column="UPDATE_TIME"/>
-
-        <!-- 一个用户对应一个部门 一个部门对应多个用户-->
-        <many-to-one name="dept" class="Dept" column="DEPT_ID"/>
-
-        <!-- 用户与用户扩展信息是一对一关系-->
-        <one-to-one name="userInfo" class="UserInfo" cascade="all"/>
-
-        <set name="roles" table="ROLE_USER_P" schema="USER002">
-            <key column="USER_ID"/>
-            <many-to-many class="Role" column="ROLE_ID"/>
-        </set>
-
-    </class>
+	
+	<class name="User" table="USER_P" schema="user002">
+		<id name="id" column="USER_ID">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="userName" column="USER_NAME"></property>
+		<property name="password" column="PASSWORD"></property>
+		<property name="state" column="STATE"></property>
+		
+		<property name="createBy" column="CREATE_BY"></property>
+		<property name="createDept" column="CREATE_DEPT"></property>
+		<property name="createTime" column="CREATE_TIME"></property>
+		<property name="updateBy" column="UPDATE_BY"></property>
+		<property name="updateTime" column="UPDATE_TIME"></property>
+		
+		<!-- 配置关系：用户与部门：多对一 -->
+		<many-to-one name="dept" class="Dept" column="DEPT_ID"></many-to-one>
+		
+		<!-- 配置用户和用户扩展信息：一对一的关系 -->
+		<one-to-one name="userInfo" class="UserInfo" cascade="all"></one-to-one>
+		
+		<!-- 配置用户与角色：多对多的关系 -->
+		<set name="roles" table="ROLE_USER_P" schema="user002">
+			<!-- 配置外键 -->
+			<key column="USER_ID"></key>
+			<!-- order-by一定写数据库中 的字段 -->
+			<many-to-many class="Role" column="ROLE_ID" order-by="ORDER_NO"></many-to-many>
+		</set>
+		
+		
+	</class>
+	
 </hibernate-mapping>
+    
+    

@@ -30,7 +30,7 @@ public class BaseDao implements IBaseDao{
     }
 
 
-    public <User> List<User> find(String hql, Class<User> entityClass, Object[] params) {
+    public <T> List<T> find(String hql, Class<T> entityClass, Object[] params) {
         Query query = getSession().createQuery(hql);
         if (params != null) {
             for (int i = 0; i < params.length; i++) {
@@ -40,7 +40,7 @@ public class BaseDao implements IBaseDao{
         return query.list();
     }
 
-    public <User> User get(Class<User> entityClass, Serializable id) {
+    public <T> T get(Class<T> entityClass, Serializable id) {
         return getSession().get(entityClass, id);
     }
 
@@ -50,10 +50,10 @@ public class BaseDao implements IBaseDao{
      * @param page
      * @param entityClass
      * @param params
-     * @param <User>
+     * @param <T>
      * @return
      */
-    public <User> Page<User> findPage(String hql, Page<User> page, Class<User> entityClass, Object[] params) {
+    public <T> Page<T> findPage(String hql, Page<T> page, Class<T> entityClass, Object[] params) {
         Query query = getSession().createQuery(hql);
         if (params != null) {
             for (int i = 0; i < params.length; i++) {
@@ -71,19 +71,19 @@ public class BaseDao implements IBaseDao{
         return page;
     }
 
-    public <User> void saveOrUpdate(User entity) {
+    public <T> void saveOrUpdate(T entity) {
         getSession().save(entity);
     }
 
-    public <User> void saveOrUpdateAll(Collection<User> entitys) {
+    public <T> void saveOrUpdateAll(Collection<T> entitys) {
 
     }
 
-    public <User> void deleteById(Class<User> entityClass, Serializable id) {
+    public <T> void deleteById(Class<T> entityClass, Serializable id) {
         getSession().delete(get(entityClass,id));
     }
 
-    public <User> void delete(Class<User> entityClass, Serializable[] ids) {
+    public <T> void delete(Class<T> entityClass, Serializable[] ids) {
 
     }
 }
