@@ -23,6 +23,17 @@ import java.util.List;
 @Scope("prototype")
 public class DeptAction extends BaseAction implements ModelDriven<Dept> {
 
+
+    private String symbol="dept";
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
     private Dept dept = new Dept();
 
     public Dept getModel() {

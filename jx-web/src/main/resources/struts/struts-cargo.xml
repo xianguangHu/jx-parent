@@ -17,6 +17,11 @@
 
         <action name="contractProductAction_*" class="cn.itheima.web.action.cargo.ContractProductAction" method="{1}">
             <result name="tocreate">/WEB-INF/pages/cargo/contract/jContractProductCreate.jsp</result>
+            <result name="toupdate">/WEB-INF/pages/cargo/contract/jContractProductUpdate.jsp</result>
+        </action>
+        <action name="extCproductAction_*" class="cn.itheima.web.action.cargo.ExtCproductAction" method="{1}">
+            <result name="tocreate">/WEB-INF/pages/cargo/contract/jExtCproductCreate.jsp</result>
+            <result name="toupdate">/WEB-INF/pages/cargo/contract/jExtCproductUpdate.jsp</result>
         </action>
     </package>
 </struts>

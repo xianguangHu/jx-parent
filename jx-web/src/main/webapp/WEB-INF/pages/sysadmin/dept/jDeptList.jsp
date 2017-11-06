@@ -41,12 +41,13 @@
 <div id="middleMenubar">
 <div id="innerMenubar">
   <div id="navMenubar">
-<ul>
-<li id="view"><a href="#" onclick="javascript:toView()">查看</a></li>
-<li id="new"><a href="#" onclick="formSubmit('deptAction_tocreate','_self');this.blur();">新增</a></li>
-<li id="update"><a href="#" onclick="javascript:toUpdate()">修改</a></li>
-<li id="delete"><a href="#" onclick="formSubmit('deptAction_delete','_self');this.blur();">删除</a></li>
-</ul>
+<%--<ul>--%>
+<%--<li id="view"><a href="#" onclick="javascript:toView()">查看</a></li>--%>
+<%--<li id="new"><a href="#" onclick="formSubmit('deptAction_tocreate','_self');this.blur();">新增</a></li>--%>
+<%--<li id="update"><a href="#" onclick="javascript:toUpdate()">修改</a></li>--%>
+<%--<li id="delete"><a href="#" onclick="formSubmit('deptAction_delete','_self');this.blur();">删除</a></li>--%>
+<%--</ul>--%>
+	<%@include file="../../menu3.jsp" %>
   </div>
 </div>
 </div>

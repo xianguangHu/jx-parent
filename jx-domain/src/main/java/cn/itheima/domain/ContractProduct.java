@@ -141,5 +141,28 @@ public class ContractProduct implements Serializable {
 	public void setExtCproducts(Set<ExtCproduct> extCproducts) {
 		this.extCproducts = extCproducts;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "ContractProduct{" +
+				"contract=" + contract.getId() +
+				", factory=" + factory.getId() +
+				", extCproducts=" + extCproducts +
+				", id='" + id + '\'' +
+				", factoryName='" + factoryName + '\'' +
+				", productNo='" + productNo + '\'' +
+				", productImage='" + productImage + '\'' +
+				", productDesc='" + productDesc + '\'' +
+				", loadingRate='" + loadingRate + '\'' +
+				", boxNum=" + boxNum +
+				", packingUnit='" + packingUnit + '\'' +
+				", cnumber=" + cnumber +
+				", outNumber=" + outNumber +
+				", finished=" + finished +
+				", productRequest='" + productRequest + '\'' +
+				", price=" + price +
+				", amount=" + amount +
+				", orderNo=" + orderNo +
+				'}';
+	}
 }

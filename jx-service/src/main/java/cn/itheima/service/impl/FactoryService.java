@@ -25,7 +25,7 @@ public class FactoryService implements IFactoryService{
     }
 
     public Factory get(Class<Factory> entityClass, Serializable id) {
-        return null;
+        return baseDao.get(entityClass,id);
     }
 
     public Page<Factory> findPage(String hql, Page<Factory> page, Class<Factory> entityClass, Object[] params) {

@@ -37,6 +37,7 @@ public class ContractService implements IContractService{
     public void saveOrUpdate(Contract entity) {
         if (StringUtils.isBlank(entity.getId())) {
             //插入
+            entity.setTotalAmount(0d);
             baseDao.saveOrUpdate(entity);
         } else {
             //更新
