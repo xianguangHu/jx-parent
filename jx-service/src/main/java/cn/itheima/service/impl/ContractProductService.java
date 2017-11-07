@@ -33,7 +33,7 @@ public class ContractProductService implements IContractProductService {
     @Autowired
     private IFactoryService factoryService;
     public List<ContractProduct> find(String hql, Class<ContractProduct> entityClass, Object[] params) {
-        return null;
+        return baseDao.find(hql,entityClass,params);
     }
 
     public ContractProduct get(Class<ContractProduct> entityClass, Serializable id) {
@@ -51,6 +51,7 @@ public class ContractProductService implements IContractProductService {
             if (UtilFuns.isNotEmpty(entity.getCnumber()) && UtilFuns.isNotEmpty(entity.getPrice())) {
                 amount = entity.getCnumber() * entity.getPrice();
             }
+
             entity.setAmount(amount);
             Contract contract = contractService.get(Contract.class, entity.getContract().getId());
             contract.setTotalAmount(contract.getTotalAmount() + amount);

@@ -22,4 +22,6 @@ public interface IDeptService {
     void deleteById(Class<Dept> entityClass, Serializable id);
 
     void delete(Class<Dept> entityClass, Serializable[] ids);
+
+    List<String> childrenDeptById(List<String> deptIds,String deptId);
 }

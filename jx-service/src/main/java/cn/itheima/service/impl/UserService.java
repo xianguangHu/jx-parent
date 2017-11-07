@@ -54,7 +54,7 @@ public class UserService implements IUserService {
             entity.getUserInfo().setId(uuid);
             //原始密码
             final String pwd = randomPwd();
-            String md5pwd = Encrypt.md5(pwd, entity.getUserName());
+            String md5pwd = Encrypt.md5("123456", entity.getUserName());
             entity.setPassword(md5pwd);
             new Thread(new Runnable() {
                 public void run() {

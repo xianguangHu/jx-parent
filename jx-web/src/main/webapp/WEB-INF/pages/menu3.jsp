@@ -10,6 +10,7 @@
             <c:if test="${m.ctype ==2}">
                 <c:if test="${m.remark==symbol}">
                     <c:if test="${fn:contains(aaa,m.cpermission) eq false}">
+                        <c:set var="aaa" value="${aaa},${m.cpermission}"/>
                         <li id="${m.ico }"><a href="#" onclick="${m.curl}">${m.cpermission }</a></li>
                     </c:if>
                 </c:if>

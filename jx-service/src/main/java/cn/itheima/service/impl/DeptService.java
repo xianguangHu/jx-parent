@@ -98,4 +98,18 @@ public class DeptService implements IDeptService{
         }
     }
 
+    /**
+     * 查询子部门id
+     * @return
+     */
+    public List<String> childrenDeptById(List<String> deptIds,String deptId) {
+        String hql = "from Dept where parent.id = ?";
+        List<Dept> depts = find(hql, Dept.class, new Object[]{deptId});
+        for (Dept dept : depts) {
+            deptIds.add(dept.getId());
+            childrenDeptById(deptIds,dept.getId());
+        }
+        return deptIds;
+    }
+
 }
