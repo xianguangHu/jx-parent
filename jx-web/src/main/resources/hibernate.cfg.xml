@@ -23,6 +23,9 @@
 		<mapping resource="cn/itheima/domain/ContractProduct.hbm.xml"/>
 		<mapping resource="cn/itheima/domain/ExtCproduct.hbm.xml"/>
 		<mapping resource="cn/itheima/domain/Factory.hbm.xml"/>
+		<mapping resource="cn/itheima/domain/Export.hbm.xml"/>
+		<mapping resource="cn/itheima/domain/ExportProduct.hbm.xml"/>
+		<mapping resource="cn/itheima/domain/ExtEproduct.hbm.xml"/>
 
 	</session-factory>
 </hibernate-configuration>
