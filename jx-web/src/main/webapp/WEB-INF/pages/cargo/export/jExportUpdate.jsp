@@ -45,27 +45,33 @@
 		oTD = oTR.insertCell(3);
 		oTD.innerHTML = "<b><font face='微软雅黑'><font color='blue'>"+productNo;+"</font></font></b> "
 		oTD = oTR.insertCell(4);
-		oTD.innerHTML = "<input type=\"text\" name=\"mr_cnumber\" maxLength=\"10\" value=\""+cnumber+"\" onBlur=\"setTRUpdateFlag(this);\" size=\"15\">";
+		oTD.innerHTML = "<input type=\"text\" name=\"mr_cnumber\" maxLength=\"10\" value=\""+cnumber+"\" onchange=\"mychange(this);\" size=\"15\">";
 		oTD = oTR.insertCell(5);
-		oTD.innerHTML = "<input type=\"text\" name=\"mr_grossWeight\" maxLength=\"10\" value=\""+grossWeight+"\" onBlur=\"setTRUpdateFlag(this);\" size=\"15\">";
+		oTD.innerHTML = "<input type=\"text\" name=\"mr_grossWeight\" maxLength=\"10\" value=\""+grossWeight+"\" onchange=\"mychange(this);\" size=\"15\">";
 		oTD = oTR.insertCell(6);
-		oTD.innerHTML = "<input type=\"text\" name=\"mr_netWeight\" maxLength=\"10\" value=\""+netWeight+"\" onBlur=\"setTRUpdateFlag(this);\" size=\"15\">";
+		oTD.innerHTML = "<input type=\"text\" name=\"mr_netWeight\" maxLength=\"10\" value=\""+netWeight+"\" onchange=\"mychange(this);\" size=\"15\">";
 		oTD = oTR.insertCell(7);
-		oTD.innerHTML = "<input type=\"text\" name=\"mr_sizeLength\" maxLength=\"10\" value=\""+sizeLength+"\" onBlur=\"setTRUpdateFlag(this);\" size=\"15\">";
+		oTD.innerHTML = "<input type=\"text\" name=\"mr_sizeLength\" maxLength=\"10\" value=\""+sizeLength+"\" onchange=\"mychange(this);\" size=\"15\">";
 		oTD = oTR.insertCell(8);
-		oTD.innerHTML = "<input type=\"text\" name=\"mr_sizeWidth\" maxLength=\"10\" value=\""+sizeWidth+"\" onBlur=\"setTRUpdateFlag(this);\" size=\"15\">";
+		oTD.innerHTML = "<input type=\"text\" name=\"mr_sizeWidth\" maxLength=\"10\" value=\""+sizeWidth+"\" onchange=\"mychange(this);\" size=\"15\">";
 		oTD = oTR.insertCell(9);
-		oTD.innerHTML = "<input type=\"text\" name=\"mr_sizeHeight\" maxLength=\"10\" value=\""+sizeHeight+"\" onBlur=\"setTRUpdateFlag(this);\" size=\"15\">";
+		oTD.innerHTML = "<input type=\"text\" name=\"mr_sizeHeight\" maxLength=\"10\" value=\""+sizeHeight+"\" onchange=\"mychange(this);\" size=\"15\">";
 		oTD = oTR.insertCell(10);
-		oTD.innerHTML = "<input type=\"text\" name=\"mr_exPrice\" maxLength=\"10\" value=\""+exPrice+"\" onBlur=\"setTRUpdateFlag(this);\" size=\"15\">";
+		oTD.innerHTML = "<input type=\"text\" name=\"mr_exPrice\" maxLength=\"10\" value=\""+exPrice+"\" onchange=\"mychange(this);\" size=\"15\">";
 		oTD = oTR.insertCell(11);
-		oTD.innerHTML = "<input type=\"text\" name=\"mr_tax\" maxLength=\"10\" value=\""+tax+"\" onBlur=\"setTRUpdateFlag(this);\" size=\"15\">";
+		oTD.innerHTML = "<input type=\"text\" name=\"mr_tax\" maxLength=\"10\" value=\""+tax+"\" onchange=\"mychange(this);\" size=\"15\">";
 
 		dragtableinit();	//拖动表格行
 		sortnoTR();			//排序号
 		
-	}    
-    
+	}
+
+    function mychange(obj){
+        var tr = obj.parentElement.parentElement;
+        var inputs = tr.getElementsByTagName("input"); //$("#mRecordTable>tbody>tr:input")//当通过jQuery获取表格中的tr的时候，一定要加tbody，否则获取不到
+        inputs[2].value = "1";
+    }
+
 </script> 
 
 </head>

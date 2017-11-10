@@ -28,11 +28,11 @@ public class ExportService implements IExportService {
     private IBaseDao baseDao;
 
     public Page<Export> findPage(String hql, Page<Export> page, Class<Export> entityClass, Object[] params) {
-        return null;
+        return baseDao.findPage(hql,page,entityClass,params);
     }
 
     public Export get(Class<Export> entityClass, Serializable id) {
-        return null;
+        return baseDao.get(entityClass,id);
     }
 
     public void saveOrUpdate(Export entity) {
@@ -93,6 +93,7 @@ public class ExportService implements IExportService {
             baseDao.saveOrUpdate(entity);
         } else {
             //更新
+            baseDao.saveOrUpdate(entity);
         }
     }
 
@@ -105,11 +106,13 @@ public class ExportService implements IExportService {
     }
 
     public void deleteById(Class<Export> entityClass, Serializable id) {
-
+        baseDao.deleteById(entityClass,id);
     }
 
     public void delete(Class<Export> entityClass, Serializable[] ids) {
-
+        for (Serializable id : ids) {
+            deleteById(entityClass,id);
+        }
     }
 
     public List<String> childrenExportById(List<String> ExportIds, String ExportId) {

@@ -68,6 +68,4 @@ public class AuthRealm extends AuthorizingRealm {
         info.addStringPermissions(list);
         return info;
     }
-
-
 }

@@ -31,7 +31,18 @@
         <action name="exportAction_*" class="exportAction" method="{1}">
             <result name="contractList">/WEB-INF/pages/cargo/export/jContractList.jsp</result>
             <result name="tocreate">/WEB-INF/pages/cargo/export/jExportCreate.jsp</result>
-            <result name="success" type="redirectAction">exportAction_contractList</result>
+            <result name="success" type="redirectAction">exportAction_list</result>
+            <result name="list">/WEB-INF/pages/cargo/export/jExportList.jsp</result>
+            <result name="toupdate">/WEB-INF/pages/cargo/export/jExportUpdate.jsp</result>
+            <result name="toview">/WEB-INF/pages/cargo/export/jExportView.jsp</result>
+        </action>
+
+        <action name="factoryAction_*" class="factoryAction" method="{1}">
+            <result name="toview">/WEB-INF/pages/cargo/poiimport/jPoiImport.jsp</result>
+        </action>
+
+        <action name="poiAction_*" class="poiAction" method="{1}">
+
         </action>
     </package>
 </struts>
