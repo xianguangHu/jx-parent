@@ -6,6 +6,7 @@ import cn.itheima.service.IFactoryService;
 import cn.itheima.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -16,6 +17,7 @@ import java.util.List;
  * @create 2017-11-05-下午3:40
  **/
 @Service
+@Transactional
 public class FactoryService implements IFactoryService{
 
     @Autowired
@@ -33,7 +35,7 @@ public class FactoryService implements IFactoryService{
     }
 
     public void saveOrUpdate(Factory entity) {
-
+        baseDao.saveOrUpdate(entity);
     }
 
     public void saveOrUpdateAll(Collection<Factory> entitys) {

@@ -24,7 +24,7 @@ public class ContractService implements IContractService{
     private IBaseDao baseDao;
 
     public List<Contract> find(String hql, Class<Contract> entityClass, Object[] params) {
-        return null;
+        return baseDao.find(hql,entityClass,params);
     }
 
     public Contract get(Class<Contract> entityClass, Serializable id) {

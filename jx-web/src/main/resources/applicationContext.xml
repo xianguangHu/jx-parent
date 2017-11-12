@@ -12,7 +12,7 @@
 
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.30.83:1521:XE"/>
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.30.66:1521:XE"/>
         <property name="user" value="user002"/>
         <property name="password" value="root"/>
     </bean>
@@ -46,4 +46,5 @@
     <import resource="classpath:spring/applicationContext-dao.xml"/>
     <import resource="classpath:spring/applicationContext-shiro.xml"/>
     <import resource="classpath:spring/applicationContext-mail.xml"/>
+    <import resource="classpath:spring/applicationContext-quartz.xml"/>
 </beans>

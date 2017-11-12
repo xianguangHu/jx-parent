@@ -24,6 +24,26 @@ public class Factory extends BaseEntity implements Serializable{
 	private String remark;			//说明
 	private Integer orderNo;		//排序号
 	private Integer state;			//状态：1正常0停用(伪删除)
+
+	public Factory() {
+	}
+
+	public Factory(String ctype, String fullName, String factoryName, String contacts, String phone, String mobile, String fax, String address, String inspector, String remark, Integer orderNo, Integer state) {
+		this.ctype = ctype;
+		this.fullName = fullName;
+		this.factoryName = factoryName;
+		this.contacts = contacts;
+		this.phone = phone;
+		this.mobile = mobile;
+		this.fax = fax;
+		this.address = address;
+		this.inspector = inspector;
+		this.remark = remark;
+		this.orderNo = orderNo;
+		this.state = state;
+
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -102,4 +122,5 @@ public class Factory extends BaseEntity implements Serializable{
 	public void setState(Integer state) {
 		this.state = state;
 	}
+
 }
