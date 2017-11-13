@@ -6,6 +6,12 @@ import cn.itheima.service.IContractProductService;
 import cn.itheima.util.DownloadUtil;
 import cn.itheima.util.UtilFuns;
 import cn.itheima.web.action.BaseAction;
+import com.itextpdf.awt.AsianFontMapper;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -133,6 +139,68 @@ public class OutProductAction extends BaseAction {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         workbook.write(byteArrayOutputStream);
         downloadUtil.download(byteArrayOutputStream,ServletActionContext.getResponse(),"出货表.xls");
+        return NONE;
+    }
+
+    public String printPdf() throws DocumentException, IOException, ParseException {
+        //创建文档对象
+        Document document = new Document(PageSize.A4, 10, 10, 10, 10);
+        //设置输出位置
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        PdfWriter.getInstance(document,bao);
+        //打开文档
+        document.open();
+        //写入内容
+
+        //写入大标题
+        BaseFont baseFont = BaseFont.createFont(AsianFontMapper.ChineseSimplifiedFont,
+                AsianFontMapper.ChineseSimplifiedEncoding_H, BaseFont.NOT_EMBEDDED);
+        //大标题font
+        Font bigTitleFont = new Font(baseFont, 25f, Font.BOLD, BaseColor.BLACK);
+//		/创建标题对象
+        Paragraph bigTitleParagraph = new Paragraph("出货表", bigTitleFont);
+        //设置对其方式
+        bigTitleParagraph.setAlignment(Paragraph.ALIGN_CENTER);
+        //添加至文档
+        document.add(bigTitleParagraph);
+
+        /*********小标题***********/
+        Font titleFont = new Font(baseFont, 12f, Font.NORMAL, BaseColor.BLACK);
+        PdfPTable table = new PdfPTable(8);
+
+        String[] titles = {"客户","订单号","货号","数量	","工厂","工厂交期","船期","贸易条款"};
+
+        for(String title:titles){
+            table.addCell(new PdfPCell(new Phrase(title, titleFont)));
+        }
+
+        /**************内容的输出****************/
+        String hql = "from ContractProduct where  to_char(contract.shipTime,'yyyy-mm') = ? ";
+        //获取这个月需要上船的货物
+        List<ContractProduct> cpList = contractProductService.find(hql, ContractProduct.class, new String[]{inputDate});
+
+        for(ContractProduct cp:cpList){
+
+            table.addCell(new PdfPCell(new Phrase(cp.getContract().getCustomName(), titleFont)));
+            table.addCell(new PdfPCell(new Phrase(cp.getContract().getContractNo(), titleFont)));
+            table.addCell(new PdfPCell(new Phrase(cp.getProductNo(), titleFont)));
+            table.addCell(new PdfPCell(new Phrase(cp.getCnumber()+"", titleFont)));
+            table.addCell(new PdfPCell(new Phrase(cp.getFactoryName(), titleFont)));
+            table.addCell(new PdfPCell(new Phrase(UtilFuns.dateTimeFormat(cp.getContract().getDeliveryPeriod()), titleFont)));
+            table.addCell(new PdfPCell(new Phrase(UtilFuns.dateTimeFormat(cp.getContract().getShipTime()), titleFont)));
+            table.addCell(new PdfPCell(new Phrase(cp.getContract().getTradeTerms(), titleFont)));
+
+        }
+
+        //将table添加至文档中
+        document.add(table);
+
+        //关闭文档
+        document.close();
+        //下载dfP/
+        DownloadUtil downloadUtil = new DownloadUtil();
+        downloadUtil.download(bao, ServletActionContext.getResponse(), "出货表.pdf");
+
         return NONE;
     }
 }

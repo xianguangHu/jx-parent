@@ -55,7 +55,7 @@ public class PoiAction extends BaseAction{
 
         while (true) {
             try {
-                rowNo = 0;
+                cellNo = 0;
                 //获取行
                 nRow = sheet.getRow(rowNo++);
                 //获取列的数据

@@ -15,6 +15,7 @@
   <div id="navMenubar">
 <ul>
 <li id="save"><a href="#" onclick="formSubmit('outProductAction_print','_self');this.blur();">打印</a></li>
+<li id="save"><a href="#" onclick="formSubmit('outProductAction_printPdf','_self');this.blur();">打印PDF</a></li>
 </ul>
   </div>
 </div>
