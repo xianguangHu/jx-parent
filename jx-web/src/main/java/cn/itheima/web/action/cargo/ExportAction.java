@@ -8,12 +8,19 @@ import cn.itheima.service.IExportProductService;
 import cn.itheima.service.IExportService;
 import cn.itheima.util.Page;
 import cn.itheima.util.UtilFuns;
+import cn.itheima.vo.ExportProductResult;
+import cn.itheima.vo.ExportProductVo;
+import cn.itheima.vo.ExportResult;
+import cn.itheima.vo.ExportVo;
 import cn.itheima.web.action.BaseAction;
 import com.opensymphony.xwork2.ModelDriven;
+import org.apache.cxf.jaxrs.client.WebClient;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import javax.ws.rs.core.MediaType;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -282,5 +289,47 @@ public class ExportAction extends BaseAction implements ModelDriven<Export>{
 
     public void setMr_tax(Double[] mr_tax) {
         this.mr_tax = mr_tax;
+    }
+
+    public String export() {
+        Export export = exportService.get(Export.class, model.getId());
+        //将export转成exportVo
+        ExportVo vo = new ExportVo();
+        BeanUtils.copyProperties(export,vo);
+        vo.setExportId(export.getId());
+        //将货物exportPorduct转成vo
+        Set<ExportProduct> exportProducts = export.getExportProducts();
+        Set<ExportProductVo> exportProductVos = new HashSet<ExportProductVo>();
+        for (ExportProduct exportProduct : exportProducts) {
+            //数据迁移
+            ExportProductVo exportProductVo = new ExportProductVo();
+            BeanUtils.copyProperties(exportProduct,exportProductVo);
+            exportProductVo.setExportProductId(exportProduct.getId());
+            exportProductVos.add(exportProductVo);
+        }
+        vo.setProducts(exportProductVos);
+        //调用远程方法
+        ExportResult result = WebClient.create("http://localhost:8090/ws/exportE/exportE")
+                .type(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .put(vo, ExportResult.class);
+
+        //9 解析数据，存入本地数据库
+        //9.1 将state、remark、修改export
+        export.setState(result.getState());
+        export.setRemark(result.getRemark());
+
+        //9.2 修改货物的税收
+        Set<ExportProductResult> eprSet = result.getProducts();
+        //9.3 遍历eprSet
+        for(ExportProductResult epr:eprSet){
+            //9.3.1 根据id 获取本地数据库的对象，修改的是持久态的对象
+            ExportProduct ep = exportProductService.get(ExportProduct.class, epr.getExportProductId());
+            ep.setTax(epr.getTax());
+            exportProductService.saveOrUpdate(ep);
+        }
+        //9.4 更新export
+        exportService.saveOrUpdate(export);
+        return SUCCESS;
     }
 }

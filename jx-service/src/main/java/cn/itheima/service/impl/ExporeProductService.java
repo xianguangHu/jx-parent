@@ -30,7 +30,7 @@ public class ExporeProductService implements IExportProductService {
     }
 
     public void saveOrUpdate(ExportProduct entity) {
-
+        baseDao.saveOrUpdate(entity);
     }
 
     public List<ExportProduct> find(String hql, Class<ExportProduct> entityClass, Object[] params) {
